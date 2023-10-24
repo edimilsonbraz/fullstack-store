@@ -1,9 +1,13 @@
 "use client";
 
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import DiscountBadge from "@/components/ui/discount-badge";
 import { ProductWithTotalPrice } from "@/helpers/product";
-import { ArrowDownIcon, ArrowLeftIcon, ArrowRightIcon, TruckIcon } from "lucide-react";
+import {
+  ArrowLeftIcon,
+  ArrowRightIcon,
+  TruckIcon,
+} from "lucide-react";
 import { useState } from "react";
 
 interface ProductInfoProps {
@@ -33,9 +37,7 @@ const ProductInfo = ({
       <div className="flex items-center gap-2">
         <h1 className="text-xl font-bold">R$ {totalPrice.toFixed(2)}</h1>
         {discountPercentage > 0 && (
-          <Badge className="left-3 top-3 px-2 py-[2px]">
-            <ArrowDownIcon size={14} /> {discountPercentage}%
-          </Badge>
+          <DiscountBadge>{discountPercentage}</DiscountBadge>
         )}
       </div>
 
@@ -74,17 +76,22 @@ const ProductInfo = ({
         <p className="text-justify text-sm opacity-60">{description}</p>
       </div>
 
-      <Button className="mt-8 uppercase font-bold">Adicionar ao carrinho</Button>
+      <Button className="mt-8 font-bold uppercase">
+        Adicionar ao carrinho
+      </Button>
 
-      <div className="bg-accent mt-5 flex items-center px-5 py-2 justify-between rounded-lg mb-10">
+      <div className="mb-10 mt-5 flex items-center justify-between rounded-lg bg-accent px-5 py-2">
         <div className="flex items-center gap-2">
           <TruckIcon />
 
           <div className="flex flex-col">
-            <p>Entrega via <span className="font-bold">FSPacket</span></p>
-            <p className="text-[#8162FF] text-xs">Envio para <span className="font-bold">todo Brasil</span></p>
+            <p>
+              Entrega via <span className="font-bold">FSPacket</span>
+            </p>
+            <p className="text-xs text-[#8162FF]">
+              Envio para <span className="font-bold">todo Brasil</span>
+            </p>
           </div>
-
         </div>
 
         <p className="text-sm font-semibold">Frete grátis</p>
