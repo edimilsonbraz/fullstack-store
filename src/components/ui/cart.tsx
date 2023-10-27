@@ -18,6 +18,7 @@ const Cart = () => {
 
     const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
 
+    //Quando finaliza compra redireciona pro Checkout do Stripe
     stripe?.redirectToCheckout({
       sessionId: checkout.id,
     })
