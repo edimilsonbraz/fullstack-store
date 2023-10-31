@@ -9,19 +9,30 @@ import { ScrollArea } from "./scroll-area";
 import { Button } from "./button";
 import { createCheckout } from "@/actions/checkout";
 import { loadStripe } from "@stripe/stripe-js";
+import { useSession } from "next-auth/react";
+import { createOrder } from "@/actions/order";
 
 const Cart = () => {
-  const { products, total, subtotal, totalDiscount } = useContext(CartContext);
+  const { data } = useSession()
 
+  const { products, total, subtotal, totalDiscount } = useContext(CartContext)
+  
   const handleFinishPurchaseClick = async () => {
-    const checkout = await createCheckout(products);
+    if(!data?.user) {
+      //TODO: redirecionar para o login 
+      return
+    }
+    //Cria pedido no Banco
+    await createOrder(products, (data?.user as any).id)
 
-    const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
+    const checkout = await createCheckout(products)
+
+    const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY)
 
     //Quando finaliza compra redireciona pro Checkout do Stripe
     stripe?.redirectToCheckout({
       sessionId: checkout.id,
-    });
+    })
   };
 
   return (
