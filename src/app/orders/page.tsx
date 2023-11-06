@@ -5,6 +5,8 @@ import { ShoppingBasketIcon } from "lucide-react";
 import { getServerSession } from "next-auth";
 import OrderItem from "./components/order-item";
 
+export const dynamic = "force-dynamic"
+
 async function OrderPage() {
   // User que está autenticado
   const user = getServerSession(authOptions);
