@@ -5,14 +5,19 @@ import { ShoppingBasketIcon } from "lucide-react";
 import { getServerSession } from "next-auth";
 import OrderItem from "./components/order-item";
 
-export const dynamic = "force-dynamic"
+export const dynamic = "force-dynamic";
 
 async function OrderPage() {
   // User que está autenticado
   const user = getServerSession(authOptions);
 
   if (!user) {
-    return <p>Access denied</p>;
+    return (
+      <div className="flex h-full flex-col items-center justify-center gap-2 p-5">
+        <h2 className="font-bold">Acesso Negado!</h2>
+        <p className="text-sm opacity-60">Faça login para ver seus pedidos</p>
+      </div>
+    );
   }
 
   const orders = await prismaClient.order.findMany({
@@ -22,11 +27,11 @@ async function OrderPage() {
     include: {
       orderProducts: {
         include: {
-          product: true
-        }
+          product: true,
+        },
       },
-    }
-  })
+    },
+  });
 
   return (
     <div className="p-5">
@@ -38,14 +43,13 @@ async function OrderPage() {
         Meus Pedidos
       </Badge>
 
-      <div className="flex flex-col gap-5 mt-5">
-      {orders.map(order => (
-        <OrderItem key={order.id} order={order}/>
-      ))}
+      <div className="mt-5 flex flex-col gap-5">
+        {orders.map((order) => (
+          <OrderItem key={order.id} order={order} />
+        ))}
       </div>
-      
     </div>
   );
-};
+}
 
 export default OrderPage;
