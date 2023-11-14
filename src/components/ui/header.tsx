@@ -25,9 +25,13 @@ import { AvatarFallback } from "@radix-ui/react-avatar";
 import { Separator } from "./separator";
 import Link from "next/link";
 import Cart from "./cart";
+import { useContext } from "react";
+import { CartContext } from "@/providers/cart";
 
 const Header = () => {
   const { status, data } = useSession();
+
+  const { products } = useContext(CartContext);
 
   const handleLoginClick = async () => {
     await signIn();
@@ -152,7 +156,10 @@ const Header = () => {
       <Sheet>
         <SheetTrigger asChild>
           <Button size="icon" variant="outline">
-            <ShoppingCartIcon />
+            <div className=" relative ">
+            {products.length > 0 ? <span className="absolute flex justify-center items-center text-xs bg-primary rounded-full w-5 h-5 -top-4 -right-4">{products.length}</span> : null} 
+              <ShoppingCartIcon />
+            </div>
           </Button>
         </SheetTrigger>
 
