@@ -39,7 +39,7 @@ export default async function Home() {
         alt="Até 55% de desconto esse mês!"
       />
 
-      <div className="lg:mt-8 px-5">
+      <div className="lg:mt-8 lg:mb-4 px-5 lg:px-0">
         <div className="flex">
           <ListIcon color="#5235c5" />
           <SectionTitle>Departamentos</SectionTitle>
@@ -48,7 +48,7 @@ export default async function Home() {
       </div>
 
       <div>
-        <div className="flex px-5">
+        <div className="flex px-5 lg:px-0">
           <ThumbsUpIcon color="#5235c5" />
           <SectionTitle>Ofertas</SectionTitle>
         </div>
@@ -61,7 +61,7 @@ export default async function Home() {
       />
 
       <div>
-        <div className="flex px-5">
+        <div className="flex px-5 lg:px-0">
           <KeyboardIcon color="#5235c5" />
           <SectionTitle>Teclados</SectionTitle>
         </div>
@@ -76,7 +76,7 @@ export default async function Home() {
       </div>
 
       <div>
-        <div className="flex px-5">
+        <div className="flex px-5 lg:px-0">
           <MouseIcon color="#5235c5" />
           <SectionTitle>Mouses</SectionTitle>
         </div>
