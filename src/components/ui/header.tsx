@@ -8,7 +8,9 @@ import {
   MenuIcon,
   PackageSearchIcon,
   PercentIcon,
+  SearchIcon,
   ShoppingCartIcon,
+  User2Icon,
 } from "lucide-react";
 import { Button } from "./button";
 import { Card } from "./card";
@@ -27,6 +29,7 @@ import Link from "next/link";
 import Cart from "./cart";
 import { useContext } from "react";
 import { CartContext } from "@/providers/cart";
+import { Input } from "./input";
 
 const Header = () => {
   const { status, data } = useSession();
@@ -42,7 +45,7 @@ const Header = () => {
   };
 
   return (
-    <Card className="flex items-center justify-between p-[1.875rem]">
+    <Card className="flex items-center justify-between p-[1.875rem] ">
       <Sheet>
         <SheetTrigger asChild>
           <Button size="icon" variant="outline">
@@ -147,17 +150,47 @@ const Header = () => {
         </SheetContent>
       </Sheet>
 
-      <Link href={"/"}>
-        <h1 className="text-lg font-semibold">
-          <span className="text-primary">FSW</span> Store
-        </h1>
-      </Link>
+      <div className="flex items-center justify-between lg:container md:gap-6">
+        <Link href={"/"}>
+          <h1 className="text-lg font-semibold lg:text-2xl">
+            <span className="text-primary">FSW</span> Store
+          </h1>
+        </Link>
+
+        <div className="flex items-center rounded-lg border-2 border-primary">
+          <Input
+            placeholder="Busque aqui"
+            className="rounded-r-none lg:w-[32rem]"
+          />
+          <div className="bg-primary px-4 py-1.5">
+            <SearchIcon size={28} />
+          </div>
+        </div>
+
+        <div className="lg:flex items-center gap-2 text-sm hidden ">
+          <div className="rounded-full border-2 border-primary p-1">
+            <User2Icon size={32} />
+          </div>
+          <div>
+            <Button onClick={handleLoginClick} variant={"outline"} className="block">
+            <strong>Faça login</strong>
+            </Button>
+            <Link href={"/"}>
+              Crie seu <strong>cadastro</strong>
+            </Link>
+          </div>
+        </div>
+      </div>
 
       <Sheet>
         <SheetTrigger asChild>
           <Button size="icon" variant="outline">
             <div className=" relative ">
-            {products.length > 0 ? <span className="absolute flex justify-center items-center text-xs bg-primary rounded-full w-5 h-5 -top-4 -right-4">{products.length}</span> : null} 
+              {products.length > 0 ? (
+                <span className="absolute -right-4 -top-4 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-xs">
+                  {products.length}
+                </span>
+              ) : null}
               <ShoppingCartIcon />
             </div>
           </Button>
