@@ -45,7 +45,7 @@ const Header = () => {
   };
 
   return (
-    <Card className="flex items-center justify-between p-[1.875rem] ">
+    <Card className="flex items-center justify-between p-[1.5rem] lg:p-[1.875rem] ">
       <Sheet>
         <SheetTrigger asChild>
           <Button size="icon" variant="outline">
@@ -153,7 +153,8 @@ const Header = () => {
       <div className="flex items-center justify-between lg:container md:gap-6">
         <Link href={"/"}>
           <h1 className="text-lg font-semibold lg:text-2xl">
-            <span className="text-primary">FSW</span> Store
+            <span className="text-primary ml-1 mr-1">FSW</span> 
+            <span className="hidden md:inline ">Store</span> 
           </h1>
         </Link>
 
@@ -167,13 +168,17 @@ const Header = () => {
           </div>
         </div>
 
-        <div className="lg:flex items-center gap-2 text-sm hidden ">
+        <div className="hidden items-center gap-2 text-sm lg:flex ">
           <div className="rounded-full border-2 border-primary p-1">
             <User2Icon size={32} />
           </div>
           <div>
-            <Button onClick={handleLoginClick} variant={"outline"} className="block">
-            <strong>Faça login</strong>
+            <Button
+              onClick={handleLoginClick}
+              variant={"outline"}
+              className="block"
+            >
+              <strong>Faça login</strong>
             </Button>
             <Link href={"/"}>
               Crie seu <strong>cadastro</strong>
@@ -191,7 +196,7 @@ const Header = () => {
                   {products.length}
                 </span>
               ) : null}
-              <ShoppingCartIcon />
+              <ShoppingCartIcon className="ml-2"/>
             </div>
           </Button>
         </SheetTrigger>
