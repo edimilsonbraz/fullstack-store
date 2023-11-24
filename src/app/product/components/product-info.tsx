@@ -76,12 +76,12 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
 
       <Button
         onClick={handleAddToCartClick}
-        className="mt-8 font-bold uppercase"
+        className="lg:w-1/3 mt-8 font-bold uppercase"
       >
         Adicionar ao carrinho
       </Button>
 
-      <div className="mb-10 mt-5 flex items-center justify-between rounded-lg bg-accent px-5 py-2">
+      <div className="mb-10 mt-5 flex items-center justify-between rounded-lg bg-accent px-5 py-2 lg:py-5 lg:w-1/3">
         <div className="flex items-center gap-2">
           <TruckIcon />
 
